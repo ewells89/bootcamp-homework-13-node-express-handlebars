@@ -8,16 +8,17 @@ router.get("/", function(req,res) {
             burgers: data
         };
         res.render("index", hbsObject);
+        console.log(data);
     });
 });
 
-router.post("api/burgers", function(req,res){
+router.post("/api/burgers", function(req,res){
     burger.insertOne([
         "burger_name","devoured"
     ], [
-        req.body.burger_name,res.body.devoured
+        req.body.burger_name,req.body.devoured
     ], function(result){
-        res.jason({id: result.insertId})
+        res.json({id: result.insertId})
     })
 });
 
@@ -36,7 +37,7 @@ router.put("/api/burgers/:id", function(req, res) {
 
   router.delete("/api/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
-    burger.delete(condition, function(result) {
+    burger.deleteOne(condition, function(result) {
         if (result.affectedRows == 0) {
         return res.status(404).end();
       } else {
