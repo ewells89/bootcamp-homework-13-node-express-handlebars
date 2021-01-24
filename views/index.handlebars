@@ -1,0 +1,64 @@
+<div id="background">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add a Burger</h5>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="burger_name" placeholder="Burger Name" aria-label="Burger_Name" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="form-group">
+                            <label for="devoured">Devoured?</label><br>
+                            <input type="radio" name="devoured" value="1" checked> Devoured<br>
+                            <input type="radio" name="devoured" value="0"> Not Devoured
+                        </div>
+                        <button type="button" class="btn btn-dark">Add Burger</button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-3">
+                 <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Devoured</h5>
+                            <ul>
+                                {{#each burgers}}
+                                    {{#if devoured}}
+                                    {{> burgers/burger-block devour=false}}
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                                 <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Not Devoured</h5>
+                            <ul>
+                                {{#each burgers}}
+                                    {{#unless sleepy}}
+                                    {{> burgers/burger-block devoured=true}}
+                                    {{/unless}}
+                                {{/each}}
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="plate">
+            <img src="/assets/images/burger_plate_transparent.png" alt="burger on a plate">
+        </div>
+
+
+    </div>
+
+</div>

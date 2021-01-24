@@ -1,0 +1,31 @@
+.burger_dish {
+    position:fixed;
+    bottom: 0px;
+    align-content:center;
+}
+
+#background  {
+    background-image: url("/assets/images/table-top-blurred.jpg");
+    height:100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+    left:0;
+    bottom:0;
+    background-position:100%;
+    background-size:cover;
+}
+
+.container {
+    color:gainsboro;
+    padding-top:200px;
+}
+
+#plate {
+    bottom: 40px;
+    position:absolute;
+}
+
+.card {
+    color:black;
+}
