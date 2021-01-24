@@ -1,23 +1,23 @@
 const connection = require("../config/connection.js");
 
 
-function objToSql(ob) {
-    var arr = [];
-    for (var key in ob) {
-      var value = ob[key];
-      if (Object.hasOwnProperty.call(ob, key)) {
-        if (typeof value === "string" && value.indexOf(" ") >= 0) {
-          value = "'" + value + "'";
-        }
-        arr.push(key + "=" + value);
-      }
-    }
-    return arr.toString();
-  }
+// function objToSql(ob) {
+//     var arr = [];
+//     for (var key in ob) {
+//       var value = ob[key];
+//       if (Object.hasOwnProperty.call(ob, key)) {
+//         if (typeof value === "string" && value.indexOf(" ") >= 0) {
+//           value = "'" + value + "'";
+//         }
+//         arr.push(key + "=" + value);
+//       }
+//     }
+//     return arr.toString();
+//   }
 
-  var orm = {
-    all: function(tableInput, cb) {
-      var queryString = "SELECT * FROM " + tableInput + ";";
+  const orm = {
+    selectAll: function(tableInput, cb) {
+      const queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
@@ -25,7 +25,7 @@ function objToSql(ob) {
         cb(result);
       });
     },
-    create: function(table, cols, vals, cb) {
+    insertOne: function(table, cols, vals, cb) {
       var queryString = "INSERT INTO " + table;
   
       queryString += " (";
@@ -45,7 +45,7 @@ function objToSql(ob) {
         cb(result);
       });
     },
-    update: function(table, objColVals, condition, cb) {
+    updateOne: function(table, objColVals, condition, cb) {
       var queryString = "UPDATE " + table;
   
       queryString += " SET ";
@@ -62,7 +62,7 @@ function objToSql(ob) {
         cb(result);
       });
     },
-    delete: function(table, condition, cb) {
+    deleteOne: function(table, condition, cb) {
       var queryString = "DELETE FROM " + table;
       queryString += " WHERE ";
       queryString += condition;
